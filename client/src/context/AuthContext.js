@@ -1,7 +1,8 @@
+/* global __initial_auth_token */
 import React, { useState, useEffect, createContext, useContext } from 'react';
 import { onAuthStateChanged, signInWithCustomToken } from 'firebase/auth';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db, appId } from '../firebase/config';
+import { auth, db, appId } from '../firebase.config';
 
 // 1. Create the context
 const AuthContext = createContext(null);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { db, appId } from '../firebase/config';
+import { db, appId } from '../firebase.config';
 import ItemCard from '../components/ItemCard';
 
 const UserDashboard = ({ navigate }) => {

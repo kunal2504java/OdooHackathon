@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { collection, addDoc } from 'firebase/firestore';
-import { db, appId } from '../firebase/config';
+import { db, appId } from '../firebase.config';
 
 const AddItemPage = ({ navigate }) => {
   const { user, userData } = useAuth();

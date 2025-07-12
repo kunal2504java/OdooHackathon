@@ -1,25 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import { db, appId } from '../firebase/config';
-import ItemCard from '../components/ItemCard'; // We'll use the component we just made
+import { db, appId } from '../firebase.config';
+import ItemCard from '../components/ItemCard';
 
 const LandingPage = ({ navigate }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // This effect runs when the component mounts to fetch data from Firestore
   useEffect(() => {
-    // Reference to the 'items' collection in Firestore
     const itemsCollectionRef = collection(db, `artifacts/${appId}/public/data/items`);
-    
-    // Create a query to get only items that are 'available' and 'approved'
     const q = query(
       itemsCollectionRef, 
       where("isApproved", "==", true), 
       where("status", "==", "available")
     );
     
-    // onSnapshot creates a real-time listener. The item list will update automatically.
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const itemsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setItems(itemsData);
@@ -29,9 +24,8 @@ const LandingPage = ({ navigate }) => {
       setLoading(false);
     });
 
-    // Cleanup the listener when the component unmounts
     return () => unsubscribe();
-  }, []); // The empty array ensures this effect runs only once on mount
+  }, []);
 
   return (
     <div className="container mx-auto p-4">

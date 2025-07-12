@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../firebase/config';
+import { auth } from '../firebase.config';
 
 const LoginPage = ({ navigate }) => {
   const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const LoginPage = ({ navigate }) => {
       navigate('dashboard');
     } catch (err) {
       // On failure, display a user-friendly error message
-      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password') {
+      if (err.code === 'auth/user-not-found' || err.code === 'auth/wrong-password' || err.code === 'auth/invalid-credential') {
         setError('Invalid email or password. Please try again.');
       } else {
         setError('An error occurred. Please try again later.');

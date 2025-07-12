@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { doc, onSnapshot, updateDoc, getDoc } from 'firebase/firestore';
-import { db, appId } from '../firebase/config';
+import { db, appId } from '../firebase.config';
 
 const ItemDetailPage = ({ itemId, navigate }) => {
   const [item, setItem] = useState(null);
